@@ -1,4 +1,4 @@
-
+import React from "react";
 import './App.css';
 
 function App() {
@@ -30,10 +30,12 @@ const Navigation = () => {
   )
 }
 
-const Contant = () => {
-  return (
-    <div className="content">
-      <h3>I am Contant</h3>
-    </div>
-  )
+class Contant extends React.Component {
+  render() {
+    return (
+      <div className="content">
+        <h3>I am Contant</h3>
+      </div>
+    )
+  }
 }
