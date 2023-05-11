@@ -1,157 +1,48 @@
-import React from "react";
+import React, { useState } from 'react';
 import './App.css';
+import Emoticon from './Emoticon';
+
+const emoticons = [
+  { id: 1, icon: '😊', count: 0 },
+  { id: 2, icon: '😂', count: 0 },
+  { id: 3, icon: '😍', count: 0 },
+  { id: 4, icon: '🤔', count: 0 },
+];
 
 function App() {
-  //const isLoading = true;
-
   return (
-    <div className="app-wrapper">
-      <Header 
-        headerText = "Component"
-      />
-      <Navigation />
-      <Contant 
-        isLoading = {true}
-        contentText = "please"
-      />
-      
-    </div>
+    <EmoticonList emoticons={emoticons} />
   );
 }
 
 export default App;
 
-const Header = (props) => {
+function EmoticonList(props) {
+  const [emoticons, setEmoticons] = useState(props.emoticons);
+  const [winner, setWinner] = useState(null);
+
+  function handleShowResults() {
+    let maxCount = -1;
+    let winningEmoticon = null;
+
+    emoticons.forEach((emoticon) => {
+      if (emoticon.count > maxCount) {
+        maxCount = emoticon.count;
+        winningEmoticon = emoticon;
+      }
+    });
+
+    setWinner(winningEmoticon);
+  }
+
   return (
-    <div className="header">
-      <h3>I am header {props.headerText}</h3>
+    <div>
+      {emoticons.map((emoticon) => (
+        <Emoticon key={emoticon.id} emoticon={emoticon.icon} />
+      ))}
+      <button onClick={handleShowResults}>Show Results</button>
+      {winner && <div>Winner: {winner.icon}</div>}
     </div>
-  )
+  );
 }
 
-const Navigation = () => {
-  return (
-    <div className="nav">
-      <h3>I am Navigation</h3>
-    </div>
-  )
-}
-
-function ListItem(props) {
-  return (
-    <h2>
-      <span>
-        {props.number}.{" "}
-      </span>
-      <span>
-        {props.name}
-      </span>
-    </h2>
-  )
-}
-
-class Contant extends React.Component {
-  componentDidMount() {
-
-  }
-
-  componentDidUpdate() {
-
-  }
-
-  componentWillUnmount() {
-
-  }
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      textFromState: "Text from state",
-      buttonText: "ASAP",
-      data: [
-        {
-          id: 1,
-          name: "Vitalii"
-        },
-        {
-          id: 2,
-          name: "Serhii"
-        },
-        {
-          id: 3,
-          name: "Ivan"
-        },
-      ]
-    }
-  }
-  render() {
-    return (
-      <div className="content">
-        <h3>I am Contant</h3>
-        <p>{this.state.textFromState}</p>
-        {this.state.data.map((item, index) => {
-          return (
-            <ListItem 
-              key={item.id}
-              number={index + 1}
-              name={item.name}
-            />
-          )
-          /*return (
-            <h2 key={item.id}>
-              <span>
-                {index + 1}.
-              </span>
-              <span>
-                {item.name}
-              </span>
-            </h2>
-          )*/
-        })}
-        {this.props.isLoading && (
-        <p>Loading...</p> 
-        )}
-        {!this.props.isLoading && (
-        <button>Click me {this.props.contentText}</button> 
-        )}
-        {!this.props.isLoading 
-          ? <p>Loading...</p> 
-          : <button>Click me {this.state.buttonText}</button>
-        }
-      </div>
-    )
-  }
-}
-
-/*class ClassComponent extends React.PureComponent {
-  componentDidMount() {
-
-  }
-
-  componentDidUpdate() {
-    
-  }
-
-  componentWillUnmount() {
-
-  }
-
-  constructor(props) {
-    super(props);
-    this.state = {
-
-    }
-  }
-
-  shouldComponentUpdate() {
-    return this.props.key1 === nextProps.key1
-  }
-
-  render() {
-    return (
-      <div className="content">
-        <h3>I am Contant</h3>
-      </div>
-    )
-  }
-}*/
