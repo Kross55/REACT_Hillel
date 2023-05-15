@@ -12,25 +12,21 @@ class EmoticonList extends React.Component {
         { id: 4, name: "😎", count: 0 },
         { id: 5, name: "🤔", count: 0 },
       ],
-      winningEmoticon: null,
+      winningEmoticon: [],
+      show: false
     };
   }
 
   handleClick = (emoticonId) => {
     const { emoticons } = this.state;
-    const index = emoticons.findIndex((e) => e.id === emoticonId);
-
+    
     this.setState({
-      emoticons: [
-        ...emoticons.slice(0, index),
-        { ...emoticons[index], count: emoticons[index].count + 1 },
-        ...emoticons.slice(index + 1),
-      ],
-    });
+      emoticons: emoticons.map(emoticon => emoticon.id === emoticonId ? { ...emoticon, count: emoticon.count + 1 } : emoticon)
+    })
   };
 
   handleShowResults = () => {
-    const { emoticons } = this.state;
+    /*const { emoticons } = this.state;
     let maxCount = 0;
     let winningEmoticon = null;
 
@@ -39,13 +35,17 @@ class EmoticonList extends React.Component {
         maxCount = e.count;
         winningEmoticon = e;
       }
-    });
+    });*/
+    const { emoticons, winningEmoticon } = this.state;
+    const [winner] = winningEmoticon ? emoticons.sort((a, b) => b.count - a.count) : [null];
 
-    this.setState({ winningEmoticon });
+    this.setState({ winningEmoticon: winner });
+    this.setState({ show: true });
   };
 
   render() {
-    const { emoticons, winningEmoticon } = this.state;
+    const { emoticons, winningEmoticon, show } = this.state;
+    console.log(show)
 
     return (
       <div>
@@ -59,9 +59,12 @@ class EmoticonList extends React.Component {
           ))}
         </ul>
         <button onClick={this.handleShowResults}>Show Results</button>
-        {winningEmoticon && (
+        {show && (
           <h3>Winning Emoticon: {winningEmoticon.name}</h3>
         )}
+        {/*{winningEmoticon && (
+          <h3>Winning Emoticon: {winningEmoticon.name}</h3>
+        )}*/}
       </div>
     );
   }
