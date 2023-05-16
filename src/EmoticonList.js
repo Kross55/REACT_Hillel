@@ -1,4 +1,5 @@
 import React from "react";
+import Emoticon from "./Emoticon"
 
 class EmoticonList extends React.Component {
   constructor(props) {
@@ -40,7 +41,7 @@ class EmoticonList extends React.Component {
     const [winner] = winningEmoticon ? emoticons.sort((a, b) => b.count - a.count) : [null];
 
     this.setState({ winningEmoticon: winner });
-    this.setState({ show: true });
+    this.setState({ show: !this.state.show });
   };
 
   render() {
@@ -51,12 +52,13 @@ class EmoticonList extends React.Component {
       <div>
         <h2>Emoticon List</h2>
         <ul>
-          {emoticons.map((e) => (
+          {/*{emoticons.map((e) => (
             <li key={e.id}>
               {e.name} - {e.count}
               <button onClick={() => this.handleClick(e.id)}>Vote</button>
             </li>
-          ))}
+          ))}*/}
+          {emoticons.map(icon => <Emoticon key={icon.id} icon={icon} onClick={this.handleClick} />)}
         </ul>
         <button onClick={this.handleShowResults}>Show Results</button>
         {show && (

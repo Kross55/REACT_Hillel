@@ -1,17 +1,14 @@
-import React, { useState } from 'react';
+import React from "react";
 
 function Emoticon(props) {
-  const [count, setCount] = useState(0);
-
-  function handleClick() {
-    setCount(count + 1);
-  }
-
+  const handleClick = () => {
+    props.onClick(props.icon.id);
+  };
   return (
-    <div>
-      <span>{props.emoticon}</span>
-      <button onClick={handleClick}>Vote ({count})</button>
-    </div>
+    <li>
+      {props.icon.name} - {props.icon.count}{" "}
+      <button onClick={handleClick}> Vote </button>
+    </li>
   );
 }
 
