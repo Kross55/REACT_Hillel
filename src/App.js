@@ -3,7 +3,6 @@ import './App.css';
 import ContactsList from "./Components/ContactsList"
 
 function App() {
-  //const isLoading = true;
 
   return (
     <div>
