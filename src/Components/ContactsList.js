@@ -38,9 +38,9 @@ const ContactsList = () => {
     return setShow(!show);
   };
 
-  const removeContact = (index) => {
+  const removeContact = (id) => {
     const newContacts = [...contacts];
-    newContacts.splice(index, 1);
+    newContacts.splice(id, 1);
     setContacts(newContacts);
   };
 
