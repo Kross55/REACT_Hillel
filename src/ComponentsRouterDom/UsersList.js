@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import './Common.css';
+import { clsx } from 'clsx';
+import style from './Common.module.css';
 
 function UsersList() {
   const [users, setUsers] = useState([]);
@@ -26,7 +27,7 @@ function UsersList() {
             Website: {user.website}
           </div>
           <button>
-            <Link to={`/albums?userId=${user.id}`} className={'link'}>Albums</Link> 
+            <Link to={`/albums?userId=${user.id}`} className={clsx(style.link, style.testColor)}>Albums</Link> 
           </button>
         </div>
       ))}

@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import './Common.css';
+import clsx from 'clsx';
+import style from './Common.module.css';
 
 function AlbumsList() {
   const location = useLocation();
@@ -24,7 +25,7 @@ function AlbumsList() {
         <div key={album.id}>
           <h4>{album.title}</h4>
           <button>
-            <Link to={`/photos?albumId=${album.id}`} className={'link'}>Photos</Link>
+            <Link to={`/photos?albumId=${album.id}`} className={clsx(style.link)}>Photos</Link>
           </button>
         </div>
       ))}
