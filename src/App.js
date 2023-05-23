@@ -1,17 +1,9 @@
-import React from "react";
+import React from 'react';
 import './App.css';
-import FormSection from "./Components/FormSection";
-import Footer from "./Components/Footer";
+import EmoticonList from './EmoticonList';
 
 function App() {
-  //const isLoading = true;
-
-  return (
-    <div>   
-      <FormSection />
-      <Footer />    
-    </div>
-  );
+  return <EmoticonList /> 
 }
 
 export default App;
