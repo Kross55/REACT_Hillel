@@ -93,12 +93,16 @@ function FormComponent() {
               </div>
               <div className={clsx(style.input__box)}>
                 <button type="submit" disabled={isSubmitting}>
-                  Sing in
+                  Sing up
                 </button>
               </div>
             </Form>
           )}
         </Formik>
+        <div className={clsx(style.input__links)}>
+          <a href="#">Forget Password</a>
+          <a href="#">Sing in</a>
+        </div>
       </div>
     </div>
   );
