@@ -9,7 +9,7 @@ const TodoList = ({ todos, toggleTodo, removeTodo }) => (
                     key={todo.id}
                     {...todo}
                     onClick={() => toggleTodo(todo.id)} 
-                    onBtnClick={() => { removeTodo(todo.id) }}/>
+                    onBtnClick={() => removeTodo(todo.id)}/>
         )}
     </div>
 );
