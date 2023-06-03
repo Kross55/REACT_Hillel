@@ -1,13 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './ComponentsFormik/App';
 import reportWebVitals from './reportWebVitals';
+
+import App from './Redux_Todos/App';
+import "./Redux_Todos/index.css"
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <App />
+  <React.StrictMode>    
+    <App /> 
   </React.StrictMode>
 );
 
