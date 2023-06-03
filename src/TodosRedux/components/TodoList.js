@@ -3,15 +3,14 @@ import PropTypes from 'prop-types'
 import Todo from './Todo'
 
 const TodoList = ({ todos, toggleTodo }) => (
-    <ul>
+    <div>
         {todos.map(todo =>
-            <Todo
-                key={todo.id}
-                {...todo}
-                onClick={() => toggleTodo(todo.id)}
-            />
+                <Todo
+                    key={todo.id}
+                    {...todo}
+                    onClick={() => toggleTodo(todo.id)} />
         )}
-    </ul>
+    </div>
 );
 
 TodoList.propTypes = {
@@ -20,7 +19,7 @@ TodoList.propTypes = {
         completed: PropTypes.bool.isRequired,
         text: PropTypes.string.isRequired
     }).isRequired).isRequired,
-    
+
     toggleTodo: PropTypes.func.isRequired
 };
 
