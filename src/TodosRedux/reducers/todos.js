@@ -1,4 +1,24 @@
-const todos = (state = [], action) => {
+const initialState = [
+    {
+        id: 0,
+        text: "Do homework",
+        isCompleted: false
+    },
+    {
+        id: 1,
+        text: "Feed the dog",
+        isCompleted: false
+    },
+    {
+        id: 2,
+        text: "Water flowers",
+        isCompleted: false
+    }
+]
+
+//let id = initialState.length
+
+const todos = (state = initialState, action) => {
     switch (action.type) {
         case 'ADD_TODO':
             return [
@@ -12,7 +32,7 @@ const todos = (state = [], action) => {
         case 'TOGGLE_TODO':
             return state.map(todo =>
                 (todo.id === action.id)
-                    ? {...todo, completed: !todo.completed}
+                    ? { ...todo, completed: !todo.completed }
                     : todo
             );
         default:
