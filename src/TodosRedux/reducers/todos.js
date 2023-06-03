@@ -1,4 +1,4 @@
-import { ADD_TODO, TOGGLE_TODO, } from '../constants'
+import { ADD_TODO, TOGGLE_TODO, REMOVE_TODO } from '../constants'
 
 export const initialState = [
     {
@@ -29,6 +29,15 @@ const todos = (state = initialState, action) => {
                     completed: false
                 }
             ];
+            case REMOVE_TODO:
+                return [
+                    ...state,
+                    {
+                        id: action.id,
+                        text: action.text,
+                        completed: false
+                    }
+                ];
         case TOGGLE_TODO:
             return state.map(todo =>
                 (todo.id === action.id)

@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const Todo = ({ onClick, completed, text }) => (
+const Todo = ({ onClick, completed, text, onBtnClick }) => (
     <div className="todo">
         <span
             onClick={onClick}
@@ -12,7 +12,7 @@ const Todo = ({ onClick, completed, text }) => (
         >
             {text}
         </span>
-        <button onClick={() => { }}>Remove ToDo</button>
+        <button onClick={onBtnClick}>Remove ToDo</button>
     </div>
 )
 
