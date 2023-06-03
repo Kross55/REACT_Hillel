@@ -1,10 +1,15 @@
 import React from "react";
 
-function InputComponent({ inputValue, onClick, onChange}) {
+function InputComponent({ inputValue, onClick, onChange, error }) {
   return (
     <div>
-      <input type="text" value={inputValue} onChange={onChange} />
-      <button onClick={onClick}>Add Todo</button>
+      <div className="form">
+        <input type="text" value={inputValue} onChange={onChange} />
+        <button className="form-buttons" onClick={onClick}>
+          Add Todo
+        </button>
+      </div>
+      <div>{error && <p style={{ color: "red" }}>{error}</p>}</div>
     </div>
   );
 }
