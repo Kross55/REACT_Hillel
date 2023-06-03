@@ -29,11 +29,11 @@ const todos = (state = initialState, action) => {
                     completed: false
                 }
             ];
-            case REMOVE_TODO:
-                return [
-                    ...state,
-                    state.filter(item => item.id !== action.id)
-                ];
+        case REMOVE_TODO:
+            return [
+                ...state,
+                state.filter(item => item.id !== action.id)
+            ];
         case TOGGLE_TODO:
             return state.map(todo =>
                 (todo.id === action.id)
