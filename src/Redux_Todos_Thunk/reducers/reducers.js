@@ -1,32 +1,38 @@
 const initialState = {
   todos: [],
-  loading: false,
-  error: null,
 };
 
-const todosReducer = (state = initialState.todos, action) => {
+const todoReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "FETCH_TODOS_REQUEST":
+    case 'FETCH_TODOS':
       return {
         ...state,
-        loading: true,
-        error: null,
-      };
-    case "FETCH_TODOS_SUCCESS":
-      return {
-        ...state,
-        loading: false,
         todos: action.payload,
       };
-    case "FETCH_TODOS_FAILURE":
+
+    case 'ADD_TODO':
       return {
         ...state,
-        loading: false,
-        error: action.payload,
+        todos: [...state.todos, action.payload],
       };
+
+    case 'DELETE_TODO':
+      return {
+        ...state,
+        todos: state.todos.filter((todo) => todo.id !== action.payload),
+      };
+
+    case 'TOGGLE_TODO':
+      return {
+        ...state,
+        todos: state.todos.map((todo) =>
+          todo.id === action.payload.id ? { ...todo, completed: action.payload.completed } : todo
+        ),
+      };
+
     default:
       return state;
   }
 };
 
-export default todosReducer;
+export default todoReducer;
