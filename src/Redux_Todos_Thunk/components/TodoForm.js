@@ -32,7 +32,7 @@ const TodoForm = ({ addTodo }) => {
         <ErrorMessage 
             name="text" 
             component="div"
-            style={{ color: "red" }} />
+            className='error' />
       </Form>
     </Formik>
   );

@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+//import clsx from "clsx";
 import { toggleTodo, deleteTodo } from "../actions/todoActions";
 import {
   FILTER_ALL,
@@ -33,17 +34,27 @@ const TodoItem = ({ todo, toggleTodo, deleteTodo, filter }) => {
     return null;
   }
 
+  //it doesn't work
+  {/*const todoTextClassName = clsx({
+    "todo-text": true,
+    "completed": todo.completed,
+  });*/}
+
+  const textStyle = {
+    textDecoration: todo.completed ? 'line-through' : 'none',
+  };
+
   return (
     <div className="todo">
-    <span
-      className="todo-text"
-      style={{ textDecoration: todo.completed ? "line-through" : "none" }}
-      onClick={handleToggle}
-    >
-      {todo.text}
+      <span
+        className="todo-text"
+        style={textStyle}
+        //className={todoTextClassName}
+        onClick={handleToggle}
+      >
+        {todo.text}
       </span>
       <button onClick={handleDelete}>Delete</button>
-    
     </div>
   );
 };

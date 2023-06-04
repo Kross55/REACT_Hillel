@@ -117,3 +117,15 @@ input {
 .filter-buttons button.active {
   font-weight: bold;
 }
+
+.completed {
+  text-decoration: "line-through";
+}
+
+.none {
+  text-decoration: "none";
+}
+
+.error {
+  color: red;
+}
