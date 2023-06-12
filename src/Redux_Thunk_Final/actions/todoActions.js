@@ -36,48 +36,56 @@ export const setFilter = (filter) => ({
 
 // Thunk action creator for fetching todos
 export const fetchTodos = () => {
-  return async (dispatch) => {
-    try {
-      const response = await axios.get(API_URL);
-      dispatch(fetchTodosSuccess(response.data));
-    } catch (error) {
-      console.log("Error fetching todos:", error);
-    }
+  return (dispatch) => {
+    axios
+      .get(API_URL)
+      .then( (response) => {
+        dispatch(fetchTodosSuccess(response.data));
+      })
+      .catch( (error) => {
+        console.log("Error fetching todos:", error);
+      });
   };
 };
 
 // Thunk action creator for adding a todo
 export const addTodo = (text) => {
-  return async (dispatch) => {
-    try {
-      const response = await axios.post(API_URL, { text, completed: false });
-      dispatch(addTodoSuccess(response.data));
-    } catch (error) {
-      console.log("Error adding todo:", error);
-    }
+  return (dispatch) => {
+    axios
+      .post(API_URL, { text, completed: false })
+      .then( (response) => {
+        dispatch(addTodoSuccess(response.data))
+      })
+      .catch( (error) => {
+        console.log("Error adding todo:", error)
+      })
   };
 };
 
 // Thunk action creator for toggling a todo
 export const toggleTodo = (id, completed) => {
-  return async (dispatch) => {
-    try {
-      await axios.put(`${API_URL}/${id}`, { completed });
-      dispatch(toggleTodoSuccess(id));
-    } catch (error) {
-      console.log("Error toggling todo:", error);
-    }
+  return (dispatch) => {
+    axios
+      .put(`${API_URL}/${id}`, { completed })
+      .then( () => {
+        dispatch(toggleTodoSuccess(id));
+      })
+      .catch( (error) => {
+        console.log("Error toggling todo:", error);
+      });
   };
 };
 
 // Thunk action creator for deleting a todo
 export const deleteTodo = (id) => {
-  return async (dispatch) => {
-    try {
-      await axios.delete(`${API_URL}/${id}`);
-      dispatch(deleteTodoSuccess(id));
-    } catch (error) {
+  return (dispatch) => {
+    axios
+      .delete(`${API_URL}/${id}`)
+      .then( () => {
+        dispatch(deleteTodoSuccess(id));
+      })
+      .catch( (error) => { 
       console.log("Error deleting todo:", error);
-    }
+      })
   };
 };
